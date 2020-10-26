@@ -1,0 +1,17 @@
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Data Structure Visualizer.exe.config
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Data Structure Visualizer.exe
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Data Structure Visualizer.pdb
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Microsoft.Msagl.dll
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Microsoft.Msagl.Drawing.dll
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Microsoft.Msagl.xml
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Microsoft.Msagl.Drawing.xml
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data Structure Visualizer.csprojAssemblyReference.cache
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data_Structure_Visualizer.form.resources
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data_Structure_Visualizer.Properties.Resources.resources
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data Structure Visualizer.csproj.GenerateResource.cache
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data Structure Visualizer.csproj.CoreCompileInputs.cache
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data Structure Visualizer.csproj.CopyComplete
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data Structure Visualizer.exe
+C:\Users\pruit\source\repos\Data Structure Visualizer\Data Structure Visualizer\obj\Debug\Data Structure Visualizer.pdb
