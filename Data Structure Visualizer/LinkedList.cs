@@ -17,13 +17,12 @@ namespace Data_Structure_Visualizer
             {
                 if (next == null)
                 {
-                    return $"Node with a data value of {data} and next value being null.";
+                    return $"Node: Data = {data}, Next = null";
                 }
                 else
                 {
-                    return $"Node with a data value of {data} and next value being {next.data}.";
+                    return $"Node: Data = {data}, Next = {next.data}";
                 }
-                
             }
         }
 
@@ -299,7 +298,7 @@ namespace Data_Structure_Visualizer
             graph_panel.Controls.Clear();
 
             // viewer settings
-            viewer.Dock = DockStyle.Fill;
+            viewer.OutsideAreaBrush = System.Drawing.Brushes.White;
             viewer.LayoutAlgorithmSettingsButtonVisible = false;
             viewer.EdgeInsertButtonVisible = false;
             viewer.UndoRedoButtonsVisible = false;

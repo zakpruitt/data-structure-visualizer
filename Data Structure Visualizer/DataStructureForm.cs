@@ -16,12 +16,21 @@ namespace Data_Structure_Visualizer
         Queue<int> myQueue = new Queue<int>();
 
         // TREE-BASED DS
-        BinarySearchTree<int> MyBST = new BinarySearchTree<int>();
+        BinarySearchTree<int> myBST = new BinarySearchTree<int>();
+        MinHeap<int> myMinHeap = new MinHeap<int>();
 
         public Form()
         {
             InitializeComponent();
             data_structure_select.SelectedIndex = 0;
+
+            myBST.InsertBNode(5);
+            myBST.InsertBNode(2);
+            myBST.InsertBNode(1);
+            myBST.InsertBNode(4);
+            myBST.InsertBNode(3);
+            myBST.InsertBNode(6);
+            myBST.InsertBNode(7);
 
             // create objects
             GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
@@ -80,10 +89,14 @@ namespace Data_Structure_Visualizer
                 case "Binary Search Tree":
                     BST_Methods_Change();
                     break;
+
+                case "Min Heap":
+                    MinHeap_Methods_Change();
+                    break;
             }
         }
 
-        public void Execute_Method_Click(object sender, EventArgs e)
+        private void Execute_Method_Click(object sender, EventArgs e)
         {
             dynamic data;
 
@@ -165,8 +178,47 @@ namespace Data_Structure_Visualizer
                     break;
 
                 case "InsertBNode(int nodeData)":
-                    MyBST.InsertBNode(int.Parse(first_parameter_input.Text));
-                    MyBST.Draw(graph_panel);
+                    myBST.InsertBNode(int.Parse(first_parameter_input.Text));
+                    myBST.Draw(graph_panel);
+                    break;
+
+                case "FindBNode(int target)":
+                    data = myBST.TreeSearch(myBST.Root, int.Parse(first_parameter_input.Text));
+                    myBST.Draw(graph_panel);
+                    return_box.Text = data.ToString();
+                    break;
+
+                case "DeleteBNode(int target)":
+                    myBST.DeleteBNode(int.Parse(first_parameter_input.Text));
+                    myBST.Draw(graph_panel);
+                    break;
+
+                //case "PreOrder()":
+                //    myBST.Draw(graph_panel, "PreOrder");
+                //    break;
+
+                //case "InOrder() *default*":
+                //    myBST.Draw(graph_panel, "default");
+                //    break;
+
+                //case "PostOrder()":
+                //    myBST.Draw(graph_panel, "PostOrder");
+                //    break;
+
+                case "GetMin()":
+                    data = myMinHeap.GetMin();
+                    return_box.Text = data.ToString();
+                    break;
+
+                case "Add(int data)":
+                    myMinHeap.Add(int.Parse(first_parameter_input.Text));
+                    myMinHeap.Draw(graph_panel);
+                    break;
+                    
+                case "PopMin()":
+                    data = myMinHeap.PopMin();
+                    myMinHeap.Draw(graph_panel);
+                    return_box.Text = data.ToString();
                     break;
             }
         }
@@ -205,6 +257,19 @@ namespace Data_Structure_Visualizer
         {
             method_select.Items.Clear();
             method_select.Items.Add("InsertBNode(int nodeData)");
+            method_select.Items.Add("FindBNode(int target)");
+            method_select.Items.Add("DeleteBNode(int target)");
+            //method_select.Items.Add("PreOrder()");
+            //method_select.Items.Add("InOrder() *default*");
+            //method_select.Items.Add("PostOrder()");
+        }
+
+        private void MinHeap_Methods_Change()
+        {
+            method_select.Items.Clear();
+            method_select.Items.Add("GetMin()");
+            method_select.Items.Add("Add(int data)");
+            method_select.Items.Add("PopMin()");
         }
     }
 }

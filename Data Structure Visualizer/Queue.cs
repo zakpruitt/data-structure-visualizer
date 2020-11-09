@@ -173,7 +173,7 @@ namespace Data_Structure_Visualizer
             graph_panel.Controls.Clear();
 
             // viewer settings
-            viewer.Dock = DockStyle.Fill;
+            viewer.OutsideAreaBrush = System.Drawing.Brushes.White;
             viewer.LayoutAlgorithmSettingsButtonVisible = false;
             viewer.EdgeInsertButtonVisible = false;
             viewer.UndoRedoButtonsVisible = false;
