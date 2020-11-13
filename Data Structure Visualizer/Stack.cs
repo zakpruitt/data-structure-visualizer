@@ -41,6 +41,7 @@ namespace Data_Structure_Visualizer
 
         //top of stack
         private Node top = null;
+        private Node found = null;
 
         public bool IsEmpty()
         {
@@ -88,6 +89,11 @@ namespace Data_Structure_Visualizer
             {
                 top = newNode;
             }
+            else if (Contains(data) == true)
+            {
+                found = null;
+                throw new Exception("Value already exists within Stack.");
+            }
             else
             {
                 Node temp = top;
@@ -95,6 +101,36 @@ namespace Data_Structure_Visualizer
                 top = newNode;
                 newNode.next = temp;
             }
+        }
+
+        public bool Contains(T key)
+        {
+            if (top.next == null)
+            {
+                if (top.data.Equals(key))
+                {
+                    found = top;
+                    return true;
+                }
+                else
+                    return false;
+            }
+
+            Node temp = top;
+            bool contains = false;
+
+            while (temp != null)
+            {
+                if (temp.data.Equals(key))
+                {
+                    found = temp;
+                    contains = true;
+                }
+
+                temp = temp.next;
+            }
+
+            return contains;
         }
 
         public T Pop()
@@ -107,7 +143,7 @@ namespace Data_Structure_Visualizer
             try
             {
                 if (top == null)
-                    throw new Exception("Stack is empty");
+                    throw new Exception("Stack is empty.");
 
                 T data = top.data;
 
@@ -165,25 +201,33 @@ namespace Data_Structure_Visualizer
             GViewer viewer = new GViewer();
             Graph graph = new Graph("graph");
 
-            // graph contents
-            T previous = data[0];
-            foreach (T element in data)
+            try
             {
-                if (data[0].Equals(element))
+                // graph contents
+                T previous = data[0];
+                foreach (T element in data)
                 {
-                    graph.AddNode(element.ToString());
-                    Microsoft.Msagl.Drawing.Node head = graph.FindNode(element.ToString());
+                    if (data[0].Equals(element))
+                    {
+                        graph.AddNode(element.ToString());
+                        Microsoft.Msagl.Drawing.Node head = graph.FindNode(element.ToString());
 
-                    head.Attr.FillColor = Color.LightYellow;
-                    head.Attr.Shape = Shape.Circle;
-                    continue;
+                        head.Attr.FillColor = Color.LightYellow;
+                        head.Attr.Shape = Shape.Circle;
+                        continue;
+                    }
+
+                    graph.AddEdge(previous.ToString(), element.ToString());
+                    graph.FindNode(element.ToString()).Attr.FillColor = Color.LightBlue;
+                    graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
+
+                    previous = element;
                 }
-
-                graph.AddEdge(previous.ToString(), element.ToString());
-                graph.FindNode(element.ToString()).Attr.FillColor = Color.LightBlue;
-                graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
-
-                previous = element;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Stack cleared/or empty.");
             }
 
             // bind the graph to the viewer 
@@ -204,6 +248,11 @@ namespace Data_Structure_Visualizer
             graph_panel.Controls.Add(viewer);
             graph_panel.ResumeLayout();
             graph_panel.Show();
+        }
+
+        public void Clear()
+        {
+            top = null;
         }
     }
 }

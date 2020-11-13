@@ -28,25 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("An integer to be placed within the new head node.");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Parameters", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Description");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("InsertHeadNode(int data)", new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node6");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node7");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Node8");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Linked List", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Stack");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Binary Search Tree");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Min Heap");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             this.graph_panel = new System.Windows.Forms.Panel();
             this.control_panel = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -65,7 +47,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.first_parameter_input = new System.Windows.Forms.TextBox();
             this.method_doc_tab = new System.Windows.Forms.TabPage();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.time_complexity_box = new System.Windows.Forms.RichTextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.parameter_description_box = new System.Windows.Forms.RichTextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.method_description_box = new System.Windows.Forms.RichTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.method_ds_select = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.method_doc_select = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.color_legend_tab = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.control_panel.SuspendLayout();
@@ -156,6 +147,7 @@
             this.clear_button.TabIndex = 14;
             this.clear_button.Text = "Clear Data Structure";
             this.clear_button.UseVisualStyleBackColor = false;
+            this.clear_button.Click += new System.EventHandler(this.Clear_Button_Click);
             // 
             // return_box
             // 
@@ -293,7 +285,16 @@
             // 
             // method_doc_tab
             // 
-            this.method_doc_tab.Controls.Add(this.treeView1);
+            this.method_doc_tab.Controls.Add(this.time_complexity_box);
+            this.method_doc_tab.Controls.Add(this.label11);
+            this.method_doc_tab.Controls.Add(this.parameter_description_box);
+            this.method_doc_tab.Controls.Add(this.label10);
+            this.method_doc_tab.Controls.Add(this.method_description_box);
+            this.method_doc_tab.Controls.Add(this.label9);
+            this.method_doc_tab.Controls.Add(this.method_ds_select);
+            this.method_doc_tab.Controls.Add(this.label7);
+            this.method_doc_tab.Controls.Add(this.method_doc_select);
+            this.method_doc_tab.Controls.Add(this.label8);
             this.method_doc_tab.Location = new System.Drawing.Point(4, 22);
             this.method_doc_tab.Name = "method_doc_tab";
             this.method_doc_tab.Padding = new System.Windows.Forms.Padding(3);
@@ -302,44 +303,124 @@
             this.method_doc_tab.Text = "Method Docs.";
             this.method_doc_tab.UseVisualStyleBackColor = true;
             // 
-            // treeView1
+            // time_complexity_box
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.Location = new System.Drawing.Point(3, 3);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node3";
-            treeNode1.Text = "An integer to be placed within the new head node.";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Parameters";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "Description";
-            treeNode4.Name = "Node5";
-            treeNode4.Text = "InsertHeadNode(int data)";
-            treeNode5.Name = "Node6";
-            treeNode5.Text = "Node6";
-            treeNode6.Name = "Node7";
-            treeNode6.Text = "Node7";
-            treeNode7.Name = "Node8";
-            treeNode7.Text = "Node8";
-            treeNode8.Name = "ll";
-            treeNode8.Text = "Linked List";
-            treeNode9.Name = "Node1";
-            treeNode9.Text = "Stack";
-            treeNode10.Name = "Node2";
-            treeNode10.Text = "Queue";
-            treeNode11.Name = "Node3";
-            treeNode11.Text = "Binary Search Tree";
-            treeNode12.Name = "Node4";
-            treeNode12.Text = "Min Heap";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11,
-            treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(205, 541);
-            this.treeView1.TabIndex = 0;
+            this.time_complexity_box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.time_complexity_box.Location = new System.Drawing.Point(0, 475);
+            this.time_complexity_box.Name = "time_complexity_box";
+            this.time_complexity_box.Size = new System.Drawing.Size(205, 69);
+            this.time_complexity_box.TabIndex = 13;
+            this.time_complexity_box.Text = "";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(34, 448);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(151, 24);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Time Complexity";
+            // 
+            // parameter_description_box
+            // 
+            this.parameter_description_box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.parameter_description_box.Location = new System.Drawing.Point(0, 362);
+            this.parameter_description_box.Name = "parameter_description_box";
+            this.parameter_description_box.Size = new System.Drawing.Size(205, 69);
+            this.parameter_description_box.TabIndex = 11;
+            this.parameter_description_box.Text = "";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(56, 335);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(105, 24);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Parameters";
+            // 
+            // method_description_box
+            // 
+            this.method_description_box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.method_description_box.Location = new System.Drawing.Point(0, 226);
+            this.method_description_box.Name = "method_description_box";
+            this.method_description_box.Size = new System.Drawing.Size(205, 96);
+            this.method_description_box.TabIndex = 9;
+            this.method_description_box.Text = "";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(23, 199);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(173, 24);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Method Description";
+            // 
+            // method_ds_select
+            // 
+            this.method_ds_select.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.method_ds_select.FormattingEnabled = true;
+            this.method_ds_select.Items.AddRange(new object[] {
+            "Linked List",
+            "Stack",
+            "Queue",
+            "Binary Search Tree",
+            "Min Heap"});
+            this.method_ds_select.Location = new System.Drawing.Point(20, 49);
+            this.method_ds_select.Margin = new System.Windows.Forms.Padding(2);
+            this.method_ds_select.Name = "method_ds_select";
+            this.method_ds_select.Size = new System.Drawing.Size(171, 24);
+            this.method_ds_select.TabIndex = 4;
+            this.method_ds_select.SelectedIndexChanged += new System.EventHandler(this.Data_Structure_Changed);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(44, 13);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 24);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Data Structure";
+            // 
+            // method_doc_select
+            // 
+            this.method_doc_select.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.method_doc_select.FormattingEnabled = true;
+            this.method_doc_select.Items.AddRange(new object[] {
+            "InsertTailNode(int data)",
+            "RemoveHeadNode()",
+            "RemoveTailNode()",
+            "InsertAfter(int data, int position)",
+            "RemoveAfter(int position)",
+            "RemoveTailNode()",
+            "Find(int target)",
+            "Sort()"});
+            this.method_doc_select.Location = new System.Drawing.Point(20, 146);
+            this.method_doc_select.Margin = new System.Windows.Forms.Padding(2);
+            this.method_doc_select.Name = "method_doc_select";
+            this.method_doc_select.Size = new System.Drawing.Size(171, 23);
+            this.method_doc_select.TabIndex = 6;
+            this.method_doc_select.SelectedIndexChanged += new System.EventHandler(this.Method_Docs_Change);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(66, 111);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 24);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Method";
             // 
             // color_legend_tab
             // 
@@ -369,6 +450,7 @@
             this.Controls.Add(this.control_panel);
             this.Controls.Add(this.graph_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form";
             this.Text = "Data Structure Visualizer";
             this.control_panel.ResumeLayout(false);
@@ -376,6 +458,7 @@
             this.controls_tab.ResumeLayout(false);
             this.controls_tab.PerformLayout();
             this.method_doc_tab.ResumeLayout(false);
+            this.method_doc_tab.PerformLayout();
             this.color_legend_tab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -404,7 +487,16 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ComboBox method_ds_select;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox method_doc_select;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox time_complexity_box;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RichTextBox parameter_description_box;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RichTextBox method_description_box;
+        private System.Windows.Forms.Label label9;
     }
 }
 

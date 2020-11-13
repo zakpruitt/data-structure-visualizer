@@ -36,6 +36,12 @@ namespace Data_Structure_Visualizer
 
         public void InsertHeadNode(T headValue)
         {
+            if (Find(headValue) != null)
+            {
+                found = null;
+                throw new Exception("Value already exists within Linked List.");
+            }
+
             Node temp = head.next; //saves next node to be pointed to
 
             Node newNode = new Node();
@@ -47,6 +53,12 @@ namespace Data_Structure_Visualizer
 
         public void InsertTailNode(T tailValue)
         {
+            if (Find(tailValue) != null)
+            {
+                found = null;
+                throw new Exception("Value already exists within Linked List.");
+            }
+
             Node temp = head;
 
             while (temp.next != null)
@@ -62,6 +74,11 @@ namespace Data_Structure_Visualizer
 
         public T RemoveHeadNode()
         {
+            if (head.next == null)
+            {
+                throw new NullReferenceException("Linked List is empty.");
+            }
+
             T data = head.next.data;
             head.next = head.next.next; //skips head.next; therefore, removing it
 
@@ -70,6 +87,11 @@ namespace Data_Structure_Visualizer
 
         public T RemoveTailNode()
         {
+            if (head.next == null)
+            {
+                throw new NullReferenceException("Linked List is empty.");
+            }
+
             Node temp = head;
 
             while (temp.next.next != null)
@@ -107,6 +129,12 @@ namespace Data_Structure_Visualizer
 
         public void InsertAfter(int position, T value)
         {
+            if (Find(value) != null)
+            {
+                found = null;
+                throw new Exception("Value already exists within Linked List.");
+            }
+
             // must select from 1 - the range of the linked list.
             Node temp = head;
             int counter = 0;
@@ -179,11 +207,13 @@ namespace Data_Structure_Visualizer
                 temp = temp.next;
 
                 if (EqualityComparer<T>.Default.Equals(temp.data, target)) //can't perform == on T values, so must use this method to compare.
+                {
+                    found = temp;
                     break;
+                }
             }
 
-            found = temp;
-            return temp;
+            return found;
         }
 
         public int GetCount()
@@ -258,38 +288,47 @@ namespace Data_Structure_Visualizer
             Graph graph = new Graph("graph");
 
             // graph contents
-            T previous = data[0];
-            foreach (T element in data)
-            {
-                if (data[0].Equals(element))
-                {
-                    graph.AddNode(element.ToString());
-                    Microsoft.Msagl.Drawing.Node head = graph.FindNode(element.ToString());
 
-                    head.Attr.FillColor = Color.LightYellow;
-                    head.Attr.Shape = Shape.Circle;
-                    continue;
+            try
+            {
+                T previous = data[0];
+                foreach (T element in data)
+                {
+                    if (data[0].Equals(element))
+                    {
+                        graph.AddNode(element.ToString());
+                        Microsoft.Msagl.Drawing.Node head = graph.FindNode(element.ToString());
+
+                        head.Attr.FillColor = Color.LightYellow;
+                        head.Attr.Shape = Shape.Circle;
+                        continue;
+                    }
+
+                    viewer.CurrentLayoutMethod = LayoutMethod.Ranking;
+
+                    var edge = graph.AddEdge(previous.ToString(), element.ToString());
+                    edge.Attr.Length = 1;
+                    graph.FindNode(element.ToString()).Attr.FillColor = Color.LightBlue;
+                    graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
+
+                    previous = element;
                 }
 
-                viewer.CurrentLayoutMethod = LayoutMethod.Ranking;
+                if (found != null)
+                {
+                    var node = graph.FindNode(found.data.ToString());
+                    node.Attr.FillColor = Color.LightGreen;
+                    node.Attr.Shape = Shape.Diamond;
 
-                var edge = graph.AddEdge(previous.ToString(), element.ToString());
-                edge.Attr.Length = 1;
-                graph.FindNode(element.ToString()).Attr.FillColor = Color.LightBlue;
-                graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
-
-                previous = element;
+                    found = null;
+                }
             }
-
-            if (found != null)
+            catch (Exception ex)
             {
-                var node = graph.FindNode(found.data.ToString());
-                node.Attr.FillColor = Color.LightGreen;
-                node.Attr.Shape = Shape.Diamond;
-
-                found = null;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Linked List cleared/or empty.");
             }
-
+            
             // bind the graph to the viewer 
             viewer.Graph = graph;
 
@@ -308,6 +347,11 @@ namespace Data_Structure_Visualizer
             graph_panel.Controls.Add(viewer);
             graph_panel.ResumeLayout();
             graph_panel.Show();
+        }
+
+        public void Clear()
+        {
+            head = new Node();
         }
     }
 }

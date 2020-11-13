@@ -39,6 +39,9 @@ namespace Data_Structure_Visualizer
         // ACTION METHODS
         public void Add(T data)
         {
+            if (elements.Contains(data))
+                throw new Exception("Value already exists within Min Heap.");
+
             elements.Add(data);
             HeapifyUp(elements.Count - 1);
         }
@@ -163,6 +166,13 @@ namespace Data_Structure_Visualizer
 
                 iterationIndex += 1;
             }                
+        }
+
+        public void Clear()
+        {
+            elements = new List<T>();
+
+            MessageBox.Show("Min Heap cleared/or empty.");
         }
     }
 }

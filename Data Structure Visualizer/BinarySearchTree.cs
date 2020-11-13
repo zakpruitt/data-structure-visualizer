@@ -177,8 +177,10 @@ namespace Data_Structure_Visualizer
             GViewer viewer = new GViewer();
             Graph graph = new Graph("graph");
 
-            // defaults to inorder
-            DrawNodes(graph, root, Root.GetData().ToString());
+            if (root != null)
+            {
+                DrawNodes(graph, root, Root.GetData().ToString()); // defaults to inorder
+            }
 
             if (found != null)
             {
@@ -231,6 +233,13 @@ namespace Data_Structure_Visualizer
 
             DrawNodes(graph, node.left, prev);
             DrawNodes(graph, node.right, prev);
+        }
+
+        public void Clear()
+        {
+            root = null;
+
+            MessageBox.Show("Binary Search Tree cleared/or empty.");
         }
     }
 }
