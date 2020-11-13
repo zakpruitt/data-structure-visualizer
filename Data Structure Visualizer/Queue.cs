@@ -17,7 +17,7 @@ namespace Data_Structure_Visualizer
             public Node(T data)
             {
                 this.data = data;
-                next = null;               
+                next = null;
             }
 
             public override string ToString()
@@ -39,7 +39,6 @@ namespace Data_Structure_Visualizer
         private Node found = null;
 
         // METHODS 
-
         public bool Contains(T key)
         {
             if (top.next == null)
@@ -56,14 +55,14 @@ namespace Data_Structure_Visualizer
             Node temp = top;
             bool contains = false;
 
-            while (temp.next != null)
+            while (temp != null)
             {
                 if (temp.data.Equals(key))
                 {
                     found = temp;
                     contains = true;
                 }
-                    
+
                 temp = temp.next;
             }
 
@@ -76,6 +75,11 @@ namespace Data_Structure_Visualizer
             {
                 top = new Node(data);
                 return;
+            }
+            else if (Contains(data) == true)
+            {
+                found = null;
+                throw new Exception("Value already exists within Queue.");
             }
 
             Node temp = top;
@@ -93,7 +97,7 @@ namespace Data_Structure_Visualizer
             try
             {
                 if (top == null)
-                    throw new Exception("Stack is empty");
+                    throw new Exception("Queue is empty.");
 
                 T data = top.data;
 
@@ -127,42 +131,49 @@ namespace Data_Structure_Visualizer
             GViewer viewer = new GViewer();
             Graph graph = new Graph("graph");
 
-            // graph contents
-            T previous = data[0];
-
-            foreach (T element in data)
+            try
             {
-                if (data[0].Equals(element))
+                // graph contents
+                T previous = data[0];
+                foreach (T element in data)
                 {
-                    graph.AddNode(element.ToString());
-                    Microsoft.Msagl.Drawing.Node head = graph.FindNode(element.ToString());
+                    if (data[0].Equals(element))
+                    {
+                        graph.AddNode(element.ToString());
+                        Microsoft.Msagl.Drawing.Node head = graph.FindNode(element.ToString());
 
-                    head.Attr.FillColor = Color.LightYellow;
-                    head.Attr.Shape = Shape.Circle;
-                }
-                else if (data[data.Count - 1].Equals(element))
-                {
-                    graph.AddEdge(previous.ToString(), element.ToString());
-                    graph.FindNode(element.ToString()).Attr.FillColor = Color.LightCoral;
-                    graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
-                }
-                else
-                {
-                    graph.AddEdge(previous.ToString(), element.ToString());
-                    graph.FindNode(element.ToString()).Attr.FillColor = Color.LightBlue;
-                    graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
+                        head.Attr.FillColor = Color.LightYellow;
+                        head.Attr.Shape = Shape.Circle;
+                    }
+                    else if (data[data.Count - 1].Equals(element))
+                    {
+                        graph.AddEdge(previous.ToString(), element.ToString());
+                        graph.FindNode(element.ToString()).Attr.FillColor = Color.LightCoral;
+                        graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
+                    }
+                    else
+                    {
+                        graph.AddEdge(previous.ToString(), element.ToString());
+                        graph.FindNode(element.ToString()).Attr.FillColor = Color.LightBlue;
+                        graph.FindNode(element.ToString()).Attr.Shape = Shape.Circle;
+                    }
+
+                    previous = element;
                 }
 
-                previous = element;
+                if (found != null)
+                {
+                    var node = graph.FindNode(found.data.ToString());
+                    node.Attr.FillColor = Color.LightGreen;
+                    node.Attr.Shape = Shape.Diamond;
+
+                    found = null;
+                }
             }
-
-            if (found != null)
+            catch (Exception ex)
             {
-                var node = graph.FindNode(found.data.ToString());
-                node.Attr.FillColor = Color.LightGreen;
-                node.Attr.Shape = Shape.Diamond;
-
-                found = null;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Queue cleared/or empty.");
             }
 
             // bind the graph to the viewer 
@@ -173,7 +184,7 @@ namespace Data_Structure_Visualizer
             graph_panel.Controls.Clear();
 
             // viewer settings
-            viewer.Dock = DockStyle.Fill;
+            viewer.OutsideAreaBrush = System.Drawing.Brushes.White;
             viewer.LayoutAlgorithmSettingsButtonVisible = false;
             viewer.EdgeInsertButtonVisible = false;
             viewer.UndoRedoButtonsVisible = false;
@@ -183,6 +194,11 @@ namespace Data_Structure_Visualizer
             graph_panel.Controls.Add(viewer);
             graph_panel.ResumeLayout();
             graph_panel.Show();
+        }
+
+        public void Clear()
+        {
+            top = null;
         }
     }
 }
