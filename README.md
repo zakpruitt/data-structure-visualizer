@@ -6,7 +6,7 @@ This desktop application visualizes Linked Lists, Stacks, Queues, Binary Search 
 <img src="https://zakpruitt.codes/images/dsv%203.PNG" width="415" height="315" /><img src="https://zakpruitt.codes/images/dsv%204.PNG" width="415" height="315" />
 <img src="https://zakpruitt.codes/images/dsv%205.PNG" width="415" height="315" />
 
-# Technology Used
+# Technologies Used
 * C#
 * Windows Forms
 * Microsoft Automatic Graph Layout library
