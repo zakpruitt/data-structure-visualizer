@@ -75,3 +75,10 @@ This project has not yet been assigned a license. If you intend to use the code 
 
 ## 9. Contact
 For questions, suggestions, or support, please open an issue in this repository. You can also reach the maintainers via the contact information listed on their GitHub profiles.
+
+<!-- portfolio
+section: more
+name: Data Structure Visualizer
+year: College
+summary: C# WinForms app that draws linked lists, stacks, queues, trees, and heaps.
+-->
